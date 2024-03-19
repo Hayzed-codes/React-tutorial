@@ -1,0 +1,12 @@
+.classWork p{
+    background-color: green;
+    color: tomato;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.classWork p:hover{
+    background-color: goldenrod;
+    color: crimson;
+}
+
