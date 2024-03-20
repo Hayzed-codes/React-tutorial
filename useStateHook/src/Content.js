@@ -3,7 +3,6 @@ import { FaTrashCan } from "react-icons/fa6";
 import './Content.css';
 
 const Content = () => {
-  // const [name, setName] = useState('Kenny');
   const [items, setItems] = useState([
     {
       id: 1,
@@ -27,39 +26,53 @@ const Content = () => {
     },
   ])
 
-    // const handleNameChange = () => {
-    //     const names = ["Fulanny", "Zainabuuu", "Hayzed"];
-    //     const int = Math.floor(Math.random() * 3);
-    
-    //     setName(names[int])
-    //   }; 
+const handleCheck = (value) => {
+  // console.log(`key: ${id}`);
+  const listItems = items.map((item) => 
+    item.id  === value ? { ...item, checked: !item.checked } :item
+  );
+  setItems(listItems);
+  localStorage.setItem('Shoppinglist', JSON.stringify(listItems))
+}
 
+const handleDelete = (del) => {
+  const listItems = items.filter((item) => item.id !== del);
+  setItems(listItems);
+  // localStorage.setItem('Delete', JSON.stringify(listItems))
+};
 
-
-    //   const handleCLick2 = (name) => {
-    //     console.log(`${name} was clicked`)
-    //   }
     
   return (
     
     <main className='student'>
-      {/* <h1>{name}</h1>
-      <button onClick={handleNameChange}>Change Name</button>
-      <button onClick={handleCLick}>Click me</button>
-      <button onDoubleClick={() => handleCLick2('Hayzed')}>Click me</button> */}
 
-      <ul>
+      {items.length ? (
+        <ul>
         {items.map((item) => {
           return (
           <li className='item' key={item.id}>
-            <input type="checkbox" checked={item.checked}  />
+            <input type="checkbox" 
+            onClick={() => handleCheck(item.id)}
+            checked={item.checked}  />
 
-            <label>{item.item}</label>
-            <FaTrashCan/>
+            <label 
+            style={(item.checked) ? {textDecoration: "line-through"} : null}
+            onDoubleClick={() => handleDelete(item.id)}>
+              {item.item}</label>
+            <FaTrashCan 
+            onClick={() => handleDelete(item.id)}
+            role='button'
+            tabIndex={0}/>
           </li>
         );
 })}
       </ul>
+      ) : (
+        <p style={{marginTop: "2rem"}}>
+          Your list is empty
+
+        </p>
+      )}
 
     </main>
   )
