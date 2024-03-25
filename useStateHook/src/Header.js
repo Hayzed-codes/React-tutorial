@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({title}) => {
 
   //********** */ Saving inline style in variable
   // const headerstyle = {
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     
     <header>
-      <h1>Cohort 4.0 Student's Details.</h1>
+      <h1>{title}</h1>
     </header>
     
     //*************/ Using variable in inline styling
