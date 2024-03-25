@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
+import AddItem from './AddItem';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
       checked: false,
       item: 'Ponmo' 
     },
-  ])
+  ]);
+  const [newItem, setNewItem] = useState('')
 
 const handleCheck = (value) => {
   // console.log(`key: ${id}`);
@@ -45,10 +47,25 @@ const handleDelete = (del) => {
   setItems(listItems);
   // localStorage.setItem('Delete', JSON.stringify(listItems))
 };
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if(!newItem) return;
+
+  setNewItem('')
+}
+
  
   return (
     <div className="App">
       <Header title = "Welcome to props" />
+      <AddItem 
+      newItem = {newItem}
+      setNewItem = {setNewItem}
+      handleSubmit = {handleSubmit} 
+      />
+
+
       <Content 
       items = {items}
       handleCheck = {handleCheck}
