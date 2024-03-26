@@ -20,6 +20,6 @@ const LineItem = ({item, handleCheck, handleDelete}) => {
         tabIndex={0}/>
       </li>
   )
-}
+} 
 
 export default LineItem

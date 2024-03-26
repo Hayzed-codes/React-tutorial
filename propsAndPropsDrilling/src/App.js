@@ -4,6 +4,7 @@ import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import AddItem from "./AddItem";
+import SearchItem from "./SearchItem";
 
 function App() {
   const [items, setItems] = useState(
@@ -11,6 +12,7 @@ function App() {
   );
 
   const [newItem, setNewItem] = useState("");
+  const [search, setSearch] = useState("")
 
   const setAndSaveItems = (newItems) => {
     setItems(newItems);
@@ -46,11 +48,19 @@ function App() {
   return (
     <div className="App">
       <Header title="Welcome to props" />
+
+      <SearchItem 
+      search = {search}
+      setSearch = {setSearch}
+
+      />
+
       <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
         handleSubmit={handleSubmit}
       />
+
 
       <Content
         items={items}
@@ -62,7 +72,6 @@ function App() {
   );
 }
 
-{
-  /* JSX stands for JavaScript XML. It is simply a syntax extension of JavaScript. It allows us to directly write HTML in React (within JavaScript code). */
-}
+/* JSX stands for JavaScript XML. It is simply a syntax extension of JavaScript. It allows us to directly write HTML in React (within JavaScript code). */
+
 export default App;
